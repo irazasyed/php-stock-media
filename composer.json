@@ -1,0 +1,71 @@
+{
+    "name": "irazasyed/php-stock-media",
+    "description": "PHP Stock Media - the ultimate library for sourcing stock images, stock videos, and other stock media resources from multiple online stock services with Laravel support out of the box!",
+    "keywords": [
+        "irazasyed",
+        "laravel",
+        "php-stock-media",
+        "stock images",
+        "stock videos",
+        "stock media",
+        "stock services",
+        "unsplash",
+        "pexels",
+        "pixabay"
+    ],
+    "homepage": "https://github.com/irazasyed/php-stock-media",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Irfaq Syed",
+            "email": "github@lukonet.net",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "guzzlehttp/guzzle": "^7.5",
+        "illuminate/contracts": "^10.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0",
+        "nunomaduro/collision": "^7.9",
+        "orchestra/testbench": "^8.0",
+        "pestphp/pest": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Irazasyed\\StockMedia\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Irazasyed\\StockMedia\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Irazasyed\\StockMedia\\Laravel\\StockMediaServiceProvider"
+            ],
+            "aliases": {
+                "StockMedia": "Irazasyed\\StockMedia\\Laravel\\Facades\\StockMedia"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
