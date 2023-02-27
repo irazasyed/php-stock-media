@@ -2,8 +2,8 @@
 
 namespace Irazasyed\StockMedia\Tests;
 
-use Orchestra\Testbench\TestCase as Orchestra;
 use Irazasyed\StockMedia\Laravel\StockMediaServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {

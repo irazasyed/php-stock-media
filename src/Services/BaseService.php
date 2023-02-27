@@ -2,50 +2,59 @@
 
 namespace Irazasyed\StockMedia\Services;
 
+use Irazasyed\StockMedia\Contracts\StockServiceContract;
 use Irazasyed\StockMedia\Exceptions\CouldNotInitializeService;
 use Irazasyed\StockMedia\Http\HttpClient;
-use Irazasyed\StockMedia\Contracts\StockServiceContract;
-use Psr\Http\Message\ResponseInterface;
 
-abstract class BaseService implements StockServiceContract {
+abstract class BaseService implements StockServiceContract
+{
     protected string $baseURL;
+
     protected array $httpOptions = [];
+
     protected ?HttpClient $httpClient = null;
 
-    public function __construct( protected string $apiKey = '' ) {
+    public function __construct(protected string $apiKey = '')
+    {
     }
 
-    public static function new( string $apiKey ): static {
-        return new static( $apiKey );
+    public static function new(string $apiKey): static
+    {
+        return new static($apiKey);
     }
 
-    public function setApiKey( string $apiKey ): static {
+    public function setApiKey(string $apiKey): static
+    {
         $this->apiKey = $apiKey;
 
         return $this;
     }
 
-    public function getApiKey(): string {
+    public function getApiKey(): string
+    {
         return $this->apiKey === ''
-            ? throw CouldNotInitializeService::apiKeyNotSet( static::class )
+            ? throw CouldNotInitializeService::apiKeyNotSet(static::class)
             : $this->apiKey;
     }
 
-    public function setBaseURL( string $baseURL ): static {
+    public function setBaseURL(string $baseURL): static
+    {
         $this->baseURL = $baseURL;
 
         return $this;
     }
 
-    public function setHttpOptions( array $options ): static {
+    public function setHttpOptions(array $options): static
+    {
         $this->httpOptions = $options;
 
         return $this;
     }
 
-    public function httpClient(): HttpClient {
-        if ( ! $this->httpClient ) {
-            $this->httpClient = new HttpClient( $this->baseURL, $this->httpOptions );
+    public function httpClient(): HttpClient
+    {
+        if (! $this->httpClient) {
+            $this->httpClient = new HttpClient($this->baseURL, $this->httpOptions);
         }
 
         return $this->httpClient;
@@ -54,7 +63,8 @@ abstract class BaseService implements StockServiceContract {
     /**
      * @throws \JsonException
      */
-    protected function responseToArray( string $response ): array {
-        return json_decode( $response, true, 512, JSON_THROW_ON_ERROR );
+    protected function responseToArray(string $response): array
+    {
+        return json_decode($response, true, 512, JSON_THROW_ON_ERROR);
     }
 }
