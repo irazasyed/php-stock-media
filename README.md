@@ -24,15 +24,15 @@ php artisan vendor:publish --tag="php-stock-media-config"
 ## Usage
 
 ```php
+use Irazasyed\StockMedia;
 use Irazasyed\StockMedia\Services\Unsplash;
 
 $apiKey = 'UNSPLASH_API_KEY';
 
-$stockMedia = new Irazasyed\StockMedia();
+$stockMedia = new StockMedia();
 $stockMedia->setDefault(Unsplash::class);
 
-$service = $stockMedia->service()->setApiKey($apiKey);
-
+$service = $stockMedia->setApiKey($apiKey);
 $result = $service->search(['query' => 'nature']);
 ```
 

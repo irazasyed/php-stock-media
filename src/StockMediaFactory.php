@@ -46,7 +46,7 @@ class StockMediaFactory {
     }
 
     public function getService( string $service ): StockServiceContract {
-        $serviceClass = $this->services[ $service ] ?? null;
+        $serviceClass = in_array( $service, $this->services, true ) ? $service : null;
 
         if ( ! $serviceClass ) {
             throw CouldNotInitializeService::serviceNotSupported( $service );
